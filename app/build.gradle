@@ -33,4 +33,17 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.1.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    // Firebase
+    implementation "com.google.firebase:firebase-firestore:21.5.0"
+    implementation "com.google.firebase:firebase-auth:19.3.2"
+
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
+
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:6.3.0'
+
 }
+
+// Add the following line:
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
