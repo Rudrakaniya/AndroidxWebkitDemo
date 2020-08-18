@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,6 +50,12 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         createRequest();
+
+        // SignIn with google button
+        SignInButton signInButton = findViewById(R.id.signInBtn);
+        TextView textView = (TextView) signInButton.getChildAt(0);
+        textView.setText("Sign in with Google");
+
 
         mAuth = FirebaseAuth.getInstance();
 
