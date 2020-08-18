@@ -8,7 +8,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.util.Base64;
 
@@ -16,10 +21,25 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     WebView mWebView ;
+    TextView mNameTV;
+    TextView mEmailTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mNameTV = findViewById(R.id.nameTV);
+        mEmailTV = findViewById(R.id.emailTV);
+
+        // Firebase data
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (signInAccount != null){
+            mNameTV.setText(signInAccount.getDisplayName());
+            mEmailTV.setText(signInAccount.getEmail());
+        }
+
 
         mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         mWebView = findViewById(R.id.webView);
