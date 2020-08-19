@@ -65,37 +65,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginTop="65dp"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="addNewItem"-->
-<!--            android:text="Add An Item" />-->
-
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="removeLastItem"-->
-<!--            android:text="Rmove Last Item" />-->
-
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="renewItems"-->
-<!--            android:text="Renew Items" />-->
-
-<!--    </LinearLayout>-->
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"

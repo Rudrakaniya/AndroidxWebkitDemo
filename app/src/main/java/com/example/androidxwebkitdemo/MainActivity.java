@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mEmailTV;
 
 
-    // Image Slider
+    // Image Slider Using https://github.com/smarteist/Android-Image-Slider
     SliderView sliderView;
     private SliderAdapterExample adapter;
     private int SLIDER_COUNT = 4;
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         sliderView.setAutoCycle(true);
         sliderView.startAutoCycle();
 
-
         sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
             @Override
             public void onIndicatorClicked(int position) {
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         renewItems();
+
 
         mNameTV = findViewById(R.id.nameTV);
         mEmailTV = findViewById(R.id.emailTV);
