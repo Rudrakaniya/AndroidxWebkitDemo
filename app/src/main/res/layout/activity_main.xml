@@ -34,7 +34,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTV" />
 
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTV"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="144dp"/>
+
+
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             app:cardCornerRadius="6dp"
             android:layout_margin="16dp"
             android:layout_width="match_parent"
