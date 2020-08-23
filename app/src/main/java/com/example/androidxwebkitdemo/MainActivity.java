@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         if (signInAccount != null){
             mNameTV.setText(signInAccount.getDisplayName());
             mEmailTV.setText(signInAccount.getEmail());
+            signInAccount.getPhotoUrl();
         }
 
 
