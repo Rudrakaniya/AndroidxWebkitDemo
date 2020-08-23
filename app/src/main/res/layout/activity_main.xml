@@ -18,62 +18,86 @@
             android:id="@+id/nameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
             android:layout_marginTop="16dp"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/emailTV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/emailTV"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/emailTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTV" />
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTV"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="144dp"/>
+        <TextView
+            android:id="@+id/currLocationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Current Location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailTV" />
 
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            app:cardCornerRadius="6dp"
-            android:layout_margin="16dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/locationET"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Enter location"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/currLocationTV" />
 
-            <com.smarteist.autoimageslider.SliderView
-                android:id="@+id/imageSlider"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:sliderAnimationDuration="600"
-                app:sliderAutoCycleDirection="back_and_forth"
-                app:sliderAutoCycleEnabled="true"
-                app:sliderIndicatorAnimationDuration="600"
-                app:sliderIndicatorGravity="center_horizontal|bottom"
-                app:sliderIndicatorMargin="15dp"
-                app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
-                app:sliderIndicatorSelectedColor="#5A5A5A"
-                app:sliderIndicatorUnselectedColor="#FFF"
-                app:sliderScrollTimeInSec="1"
-                app:sliderStartAutoCycle="true" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Submit"
+            android:clickable="true"
+            app:strokeColor="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@+id/locationET"/>
 
-        </androidx.cardview.widget.CardView>
+
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:id="@+id/cardView"-->
+        <!--            app:cardCornerRadius="6dp"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent">-->
+
+        <!--            <com.smarteist.autoimageslider.SliderView-->
+        <!--                android:id="@+id/imageSlider"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="150dp"-->
+        <!--                app:sliderAnimationDuration="600"-->
+        <!--                app:sliderAutoCycleDirection="back_and_forth"-->
+        <!--                app:sliderAutoCycleEnabled="true"-->
+        <!--                app:sliderIndicatorAnimationDuration="600"-->
+        <!--                app:sliderIndicatorGravity="center_horizontal|bottom"-->
+        <!--                app:sliderIndicatorMargin="15dp"-->
+        <!--                app:sliderIndicatorOrientation="horizontal"-->
+        <!--                app:sliderIndicatorPadding="3dp"-->
+        <!--                app:sliderIndicatorRadius="2dp"-->
+        <!--                app:sliderIndicatorSelectedColor="#5A5A5A"-->
+        <!--                app:sliderIndicatorUnselectedColor="#FFF"-->
+        <!--                app:sliderScrollTimeInSec="1"-->
+        <!--                app:sliderStartAutoCycle="true" />-->
+
+        <!--        </androidx.cardview.widget.CardView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

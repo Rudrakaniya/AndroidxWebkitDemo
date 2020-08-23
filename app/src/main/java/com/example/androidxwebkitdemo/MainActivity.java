@@ -44,29 +44,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Image Slider
-        sliderView = findViewById(R.id.imageSlider);
-
-
-        adapter = new SliderAdapterExample(this);
-        sliderView.setSliderAdapter(adapter);
-        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-        sliderView.setIndicatorSelectedColor(Color.WHITE);
-        sliderView.setIndicatorUnselectedColor(Color.GRAY);
-        sliderView.setScrollTimeInSec(3);
-        sliderView.setAutoCycle(true);
-        sliderView.startAutoCycle();
-
-        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
-            @Override
-            public void onIndicatorClicked(int position) {
-                Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
-            }
-        });
-
-        renewItems();
+//        // Image Slider
+//        sliderView = findViewById(R.id.imageSlider);
+//
+//
+//        adapter = new SliderAdapterExample(this);
+//        sliderView.setSliderAdapter(adapter);
+//        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+//        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+//        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+//        sliderView.setIndicatorSelectedColor(Color.WHITE);
+//        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+//        sliderView.setScrollTimeInSec(3);
+//        sliderView.setAutoCycle(true);
+//        sliderView.startAutoCycle();
+//
+//        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
+//            @Override
+//            public void onIndicatorClicked(int position) {
+//                Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
+//            }
+//        });
+//
+//        renewItems();
 
 
         mNameTV = findViewById(R.id.nameTV);
@@ -130,21 +130,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    // Image Slider
-    public void renewItems() {
-        List<SliderItem> sliderItemList = new ArrayList<>();
-        //dummy data
-        for (int i = 0; i < SLIDER_COUNT; i++) {
-            SliderItem sliderItem = new SliderItem();
-            if (i % 2 == 0) {
-                sliderItem.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-            } else {
-                sliderItem.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-            }
-            sliderItemList.add(sliderItem);
-        }
-        adapter.renewItems(sliderItemList);
-    }
+//    // Image Slider
+//    public void renewItems() {
+//        List<SliderItem> sliderItemList = new ArrayList<>();
+//        //dummy data
+//        for (int i = 0; i < SLIDER_COUNT; i++) {
+//            SliderItem sliderItem = new SliderItem();
+//            if (i % 2 == 0) {
+//                sliderItem.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+//            } else {
+//                sliderItem.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+//            }
+//            sliderItemList.add(sliderItem);
+//        }
+//        adapter.renewItems(sliderItemList);
+//    }
 
 
 }
