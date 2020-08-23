@@ -1,5 +1,6 @@
 package com.example.androidxwebkitdemo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -11,28 +12,47 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOGCAT_TAG = "Androidx Webkit Demo";
 
     SwipeRefreshLayout mSwipeRefreshLayout;
-    WebView mWebView ;
+    WebView mWebView;
     TextView mNameTV;
     TextView mEmailTV;
+    EditText mEditText;
+    Button mButton;
 
+    // Firebase
+    private FirebaseAuth mAuth;
 
     // Image Slider Using https://github.com/smarteist/Android-Image-Slider
     SliderView sliderView;
@@ -71,16 +91,69 @@ public class MainActivity extends AppCompatActivity {
 
         mNameTV = findViewById(R.id.nameTV);
         mEmailTV = findViewById(R.id.emailTV);
+        mEditText = findViewById(R.id.locationET);
+        mButton = findViewById(R.id.submitBtn);
 
         // Firebase data
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
-        if (signInAccount != null){
+        if (signInAccount != null) {
             mNameTV.setText(signInAccount.getDisplayName());
             mEmailTV.setText(signInAccount.getEmail());
             signInAccount.getPhotoUrl();
         }
 
+        // Adding data to Firestore
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("timeOfOpening", new Timestamp(new Date()));
+
+        FirebaseFirestore.getInstance().collection("users").document(user.getUid()).collection("logData")
+                .add(map)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(LOGCAT_TAG, "onSuccess: Data uploaded successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(LOGCAT_TAG, "onFailure: Data upload failed");
+                    }
+                });
+
+        // On location change Data upload
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String loc = mEditText.getText().toString();
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("currentCity", loc);
+                map.put("timeOfChangingCity", new Timestamp(new Date()));
+
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                FirebaseFirestore.getInstance().collection("users").document(user.getUid()).collection("locationChange")
+                        .add(map)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d(LOGCAT_TAG, "onSuccess: Change City data uploaded successfully");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(LOGCAT_TAG, "onSuccess: Change City data uploaded failed");
+                            }
+                        });
+
+            }
+        });
 
         mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         mWebView = findViewById(R.id.webView);
@@ -99,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(MainActivity.this, "on it",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "on it", Toast.LENGTH_SHORT).show();
                 mWebView.reload();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -107,9 +180,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class LocalBrowser extends WebViewClient{
+    public class LocalBrowser extends WebViewClient {
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request){
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
             view.loadUrl(url);
             return true;
@@ -128,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         mWebView.onPause();
     }
-
 
 
 //    // Image Slider

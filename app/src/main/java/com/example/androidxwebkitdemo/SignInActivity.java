@@ -145,10 +145,11 @@ public class SignInActivity extends AppCompatActivity {
 
                             // Adding the current user to the Users collection
                             FirebaseFirestore.getInstance().collection("users")
-                                    .add(map)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    .document(user.getUid())
+                                    .set(map)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
+                                        public void onSuccess(Void aVoid) {
                                             Log.d(LOGCAT_TAG, "onSuccess: Task was Successful");
                                         }
                                     })
